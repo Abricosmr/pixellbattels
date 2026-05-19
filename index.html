@@ -397,34 +397,6 @@
         }
         .cooldown-indicator.ready { color: #4caf50; background: rgba(76,175,80,0.15); }
         .cooldown-indicator.waiting { color: var(--accent); background: rgba(255,69,0,0.15); }
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(3px);
-        }
-        .modal {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            width: 90%;
-            max-width: 380px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            animation: modalIn 0.25s ease;
-            text-align: center;
-        }
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9) translateY(-20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal h2 { margin-bottom: 16px; font-size: 1.4em; }
-        .modal p { color: #999; font-size: 0.9em; margin-bottom: 20px; }
         .toast {
             position: fixed;
             bottom: 70px;
@@ -510,15 +482,6 @@
         <div class="cooldown-indicator ready" id="cooldownIndicator">ГОТОВ</div>
     </div>
 
-    <div class="modal-overlay" id="modalOverlay" style="display:none;">
-        <div class="modal">
-            <h2>🔑 Войдите, чтобы рисовать</h2>
-            <p>Используйте Google аккаунт для входа.</p>
-            <div id="googleButton"></div>
-            <button class="btn" style="margin-top:12px;background:#2a2a3a;color:#fff;" onclick="closeModal()">Отмена</button>
-        </div>
-    </div>
-
     <script>
         const GOOGLE_CLIENT_ID = '804856142505-h1qnb91pemslprq8m9ni3gs7f69jlsr5.apps.googleusercontent.com';
 
@@ -601,11 +564,10 @@
             }
         }
 
-        function initGoogle() {
+        function googleLogin() {
             google.accounts.id.initialize({
                 client_id: GOOGLE_CLIENT_ID,
                 callback: handleCredentialResponse,
-                auto_select: false,
             });
             google.accounts.id.prompt();
         }
@@ -634,7 +596,6 @@
             state.user = { id: userData.id, ...state.users[userData.id] };
             state.cooldownEnd = 0;
             saveState();
-            closeModal();
             updateAllUI();
             showToast('Добро пожаловать, ' + state.user.name + '! 🎉');
         }
@@ -645,19 +606,6 @@
             saveState();
             updateAllUI();
             showToast('Вы вышли');
-        }
-
-        function showLoginModal() {
-            document.getElementById('modalOverlay').style.display = 'flex';
-            document.getElementById('googleButton').innerHTML = '';
-            google.accounts.id.renderButton(
-                document.getElementById('googleButton'),
-                { theme: 'outline', size: 'large', width: 280 }
-            );
-        }
-
-        function closeModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
         }
 
         function renderCanvas() {
@@ -693,7 +641,7 @@
 
         function handlePixelClick(row, col) {
             if (!state.user) {
-                showLoginModal();
+                googleLogin();
                 return;
             }
             const now = Date.now();
@@ -833,7 +781,7 @@
 
         function sendChat() {
             if (!state.user) {
-                showLoginModal();
+                googleLogin();
                 return;
             }
             const input = document.getElementById('chatInput');
@@ -886,7 +834,7 @@
                     : `<div style="width:26px;height:26px;border-radius:50%;background:#ff4500;display:flex;align-items:center;justify-content:center;font-size:0.7em;color:#fff;">${state.user.name.charAt(0).toUpperCase()}</div>`;
                 el.innerHTML = `<div class="user-chip">${avatar}<span>${esc(state.user.name.split(' ')[0])}</span><span style="color:#888;font-size:0.75em;">(${state.user.pixelsPlaced||0})</span></div><button class="btn btn-chat-toggle" id="chatToggleBtn" onclick="toggleChat()" title="Чат">💬</button><button class="btn" style="background:#2a2a3a;color:#fff;font-size:0.7em;" onclick="logout()">Выйти</button>`;
             } else {
-                el.innerHTML = '<button class="btn btn-login" onclick="showLoginModal()"><span style="font-size:1.1em;">G</span> Войти через Google</button><button class="btn btn-chat-toggle" onclick="toggleChat()" title="Чат">💬</button>';
+                el.innerHTML = '<button class="btn btn-login" onclick="googleLogin()"><span style="font-size:1.1em;">G</span> Войти через Google</button><button class="btn btn-chat-toggle" onclick="toggleChat()" title="Чат">💬</button>';
             }
         }
 
@@ -918,13 +866,8 @@
         window.zoomIn = zoomIn;
         window.zoomOut = zoomOut;
         window.zoomReset = zoomReset;
-        window.showLoginModal = showLoginModal;
-        window.closeModal = closeModal;
+        window.googleLogin = googleLogin;
         window.logout = logout;
-
-        document.addEventListener('click', (e) => {
-            if (e.target.id === 'modalOverlay') closeModal();
-        });
 
         function init() {
             loadState();
@@ -933,7 +876,6 @@
             updateAllUI();
             renderChatMessages();
             setTimeout(zoomReset, 300);
-            initGoogle();
         }
         init();
     </script>
