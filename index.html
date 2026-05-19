@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<h1>test beta </h1>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Pixel Battle - Place</title>
+    <title>Pixel Battle</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
@@ -65,13 +63,8 @@
             animation: logoPulse 2s ease infinite;
         }
         @keyframes logoPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 6px var(--accent);
-            }
-            50% {
-                box-shadow: 0 0 16px var(--accent2);
-            }
+            0%,100% { box-shadow: 0 0 6px var(--accent); }
+            50% { box-shadow: 0 0 16px var(--accent2); }
         }
         .top-actions {
             display: flex;
@@ -103,7 +96,7 @@
         .btn-login:hover {
             background: #e8e8e8;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(255,255,255,0.2);
         }
         .btn-chat-toggle {
             background: var(--border);
@@ -117,12 +110,10 @@
             align-items: center;
             justify-content: center;
         }
-        .btn-chat-toggle:hover {
-            background: var(--accent);
-        }
+        .btn-chat-toggle:hover { background: var(--accent); }
         .btn-chat-toggle.active {
             background: var(--accent);
-            box-shadow: 0 0 12px rgba(255, 69, 0, 0.5);
+            box-shadow: 0 0 12px rgba(255,69,0,0.5);
         }
         .user-chip {
             display: flex;
@@ -163,20 +154,10 @@
             scrollbar-width: thin;
             scrollbar-color: #2a2a3a transparent;
         }
-        .canvas-viewport:active {
-            cursor: grabbing;
-        }
-        .canvas-viewport::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .canvas-viewport::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .canvas-viewport::-webkit-scrollbar-thumb {
-            background: #2a2a3a;
-            border-radius: 3px;
-        }
+        .canvas-viewport:active { cursor: grabbing; }
+        .canvas-viewport::-webkit-scrollbar { width: 6px; height: 6px; }
+        .canvas-viewport::-webkit-scrollbar-track { background: transparent; }
+        .canvas-viewport::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
         #pixel-canvas {
             display: grid;
             gap: 0;
@@ -186,12 +167,12 @@
         }
         .pixel {
             background: #ffffff;
-            border: 0.5px solid rgba(0, 0, 0, 0.06);
+            border: 0.5px solid rgba(0,0,0,0.06);
             cursor: crosshair;
             transition: background 0.05s;
         }
         .pixel:hover {
-            outline: 1px solid rgba(255, 255, 255, 0.8);
+            outline: 1px solid rgba(255,255,255,0.8);
             outline-offset: -1px;
             z-index: 5;
             position: relative;
@@ -199,7 +180,7 @@
         .coord-tooltip {
             position: absolute;
             pointer-events: none;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0,0,0,0.85);
             color: #fff;
             padding: 4px 8px;
             border-radius: 6px;
@@ -244,9 +225,7 @@
             font-size: 1.2em;
             padding: 2px 6px;
         }
-        .chat-close:hover {
-            color: #fff;
-        }
+        .chat-close:hover { color: #fff; }
         .chat-messages {
             flex: 1;
             overflow-y: auto;
@@ -257,13 +236,8 @@
             scrollbar-width: thin;
             scrollbar-color: #2a2a3a transparent;
         }
-        .chat-messages::-webkit-scrollbar {
-            width: 4px;
-        }
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: #2a2a3a;
-            border-radius: 2px;
-        }
+        .chat-messages::-webkit-scrollbar { width: 4px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 2px; }
         .chat-msg {
             display: flex;
             gap: 6px;
@@ -271,14 +245,8 @@
             animation: msgIn 0.2s ease;
         }
         @keyframes msgIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .chat-msg img {
             width: 24px;
@@ -300,15 +268,8 @@
             font-size: 0.75em;
             margin-bottom: 2px;
         }
-        .chat-msg-text {
-            color: #ddd;
-            line-height: 1.3;
-        }
-        .chat-msg-time {
-            font-size: 0.65em;
-            color: #666;
-            margin-top: 2px;
-        }
+        .chat-msg-text { color: #ddd; line-height: 1.3; }
+        .chat-msg-time { font-size: 0.65em; color: #666; margin-top: 2px; }
         .chat-input-area {
             display: flex;
             padding: 8px 10px;
@@ -328,9 +289,7 @@
             outline: none;
             transition: border 0.2s;
         }
-        .chat-input-area input:focus {
-            border-color: var(--accent);
-        }
+        .chat-input-area input:focus { border-color: var(--accent); }
         .chat-input-area button {
             background: var(--accent);
             border: none;
@@ -343,9 +302,7 @@
             font-family: inherit;
             transition: 0.2s;
         }
-        .chat-input-area button:hover {
-            background: var(--accent2);
-        }
+        .chat-input-area button:hover { background: var(--accent2); }
         .color-bar {
             height: 52px;
             background: var(--panel);
@@ -360,13 +317,8 @@
             scrollbar-width: thin;
             scrollbar-color: #2a2a3a transparent;
         }
-        .color-bar::-webkit-scrollbar {
-            height: 3px;
-        }
-        .color-bar::-webkit-scrollbar-thumb {
-            background: #2a2a3a;
-            border-radius: 2px;
-        }
+        .color-bar::-webkit-scrollbar { height: 3px; }
+        .color-bar::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 2px; }
         .color-swatch {
             width: 32px;
             height: 32px;
@@ -380,7 +332,7 @@
         .color-swatch:hover {
             transform: scale(1.2);
             z-index: 10;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.6);
         }
         .color-swatch.active {
             border-color: #fff !important;
@@ -426,9 +378,7 @@
             justify-content: center;
             transition: 0.15s;
         }
-        .zoom-btn:hover {
-            background: var(--accent);
-        }
+        .zoom-btn:hover { background: var(--accent); }
         .zoom-label {
             font-size: 0.75em;
             color: #888;
@@ -445,21 +395,13 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-        .cooldown-indicator.ready {
-            color: #4caf50;
-            background: rgba(76, 175, 80, 0.15);
-        }
-        .cooldown-indicator.waiting {
-            color: var(--accent);
-            background: rgba(255, 69, 0, 0.15);
-        }
+        .cooldown-indicator.ready { color: #4caf50; background: rgba(76,175,80,0.15); }
+        .cooldown-indicator.waiting { color: var(--accent); background: rgba(255,69,0,0.15); }
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
             z-index: 200;
             display: flex;
             align-items: center;
@@ -473,29 +415,16 @@
             padding: 24px;
             width: 90%;
             max-width: 380px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             animation: modalIn 0.25s ease;
             text-align: center;
         }
         @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .modal h2 {
-            margin-bottom: 16px;
-            font-size: 1.4em;
-        }
-        .modal p {
-            color: #999;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
+        .modal h2 { margin-bottom: 16px; font-size: 1.4em; }
+        .modal p { color: #999; font-size: 0.9em; margin-bottom: 20px; }
         .toast {
             position: fixed;
             bottom: 70px;
@@ -510,59 +439,29 @@
             z-index: 300;
             pointer-events: none;
             animation: toastIn 0.3s ease, toastOut 0.3s ease 2.2s forwards;
-            box-shadow: 0 8px 24px rgba(255, 69, 0, 0.4);
+            box-shadow: 0 8px 24px rgba(255,69,0,0.4);
         }
         @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         @keyframes toastOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-15px);
-            }
+            from { opacity: 1; }
+            to { opacity: 0; transform: translateX(-50%) translateY(-15px); }
         }
         @media (max-width: 700px) {
             .chat-panel {
                 position: absolute;
-                right: 0;
-                top: 0;
-                bottom: 0;
+                right: 0; top: 0; bottom: 0;
                 width: 85%;
                 max-width: 320px;
             }
-            .chat-panel.collapsed {
-                width: 0;
-            }
-            .color-swatch {
-                width: 26px;
-                height: 26px;
-            }
-            .color-current {
-                width: 28px;
-                height: 28px;
-            }
-            .color-bar {
-                height: 44px;
-                gap: 3px;
-                padding: 0 6px;
-            }
-            .top-bar {
-                height: 36px;
-                padding: 0 8px;
-            }
-            .logo-area {
-                font-size: 0.9em;
-            }
+            .chat-panel.collapsed { width: 0; }
+            .color-swatch { width: 26px; height: 26px; }
+            .color-current { width: 28px; height: 28px; }
+            .color-bar { height: 44px; gap: 3px; padding: 0 6px; }
+            .top-bar { height: 36px; padding: 0 8px; }
+            .logo-area { font-size: 0.9em; }
         }
     </style>
 </head>
@@ -583,7 +482,6 @@
             </div>
             <div class="coord-tooltip" id="coordTooltip"></div>
         </div>
-
         <div class="chat-panel collapsed" id="chatPanel">
             <div class="chat-header">
                 💬 ЧАТ
@@ -615,15 +513,14 @@
     <div class="modal-overlay" id="modalOverlay" style="display:none;">
         <div class="modal">
             <h2>🔑 Войдите, чтобы рисовать</h2>
-            <p>Используйте Google аккаунт для быстрого входа. Ваши данные защищены.</p>
+            <p>Используйте Google аккаунт для входа.</p>
             <div id="googleButton"></div>
-            <button class="btn btn-login" style="margin-top:12px;background:#2a2a3a;color:#fff;" onclick="closeModal()">Отмена</button>
+            <button class="btn" style="margin-top:12px;background:#2a2a3a;color:#fff;" onclick="closeModal()">Отмена</button>
         </div>
     </div>
 
     <script>
         const GOOGLE_CLIENT_ID = '804856142505-h1qnb91pemslprq8m9ni3gs7f69jlsr5.apps.googleusercontent.com';
-        const DEMO_MODE = false;
 
         const CONFIG = {
             CANVAS_SIZE: 200,
@@ -633,19 +530,19 @@
             ZOOM_STEP: 0.5,
             COOLDOWN_SECONDS: 15,
             COLORS: [
-                '#FFFFFF', '#D4D4D4', '#AAAAAA', '#808080', '#555555', '#2B2B2B', '#000000',
-                '#FF4500', '#FF6B35', '#FF8C42', '#FFA94D', '#FFC078', '#FFD8A8',
-                '#FFD700', '#FFC107', '#FFB300', '#FFA000', '#FF8F00', '#FF6F00',
-                '#FF1744', '#F50057', '#D500F9', '#651FFF', '#3D5AFE', '#2979FF',
-                '#00B0FF', '#00E5FF', '#1DE9B6', '#00E676', '#76FF03', '#C6FF00',
-                '#FFEA00', '#FFD740', '#FFAB40', '#FF6E40', '#FF3D00', '#DD2C00',
-                '#8D6E63', '#A1887F', '#BCAAA4', '#D7CCC8', '#EFEBE9', '#F5F5F5',
-                '#4E342E', '#3E2723', '#212121', '#1B5E20', '#0D47A1', '#311B92',
-                '#E91E63', '#9C27B0', '#673AB7', '#2196F3', '#009688', '#4CAF50',
-                '#CDDC39', '#FF9800', '#FF5722', '#795548', '#607D8B', '#9E9E9E',
-                '#F44336', '#E53935', '#C62828', '#B71C1C', '#880E4F', '#4A148C',
-                '#1565C0', '#0277BD', '#00695C', '#2E7D32', '#558B2F', '#827717',
-                '#F9A825', '#EF6C00', '#E65100', '#BF360C', '#3E2723', '#263238',
+                '#FFFFFF','#D4D4D4','#AAAAAA','#808080','#555555','#2B2B2B','#000000',
+                '#FF4500','#FF6B35','#FF8C42','#FFA94D','#FFC078','#FFD8A8',
+                '#FFD700','#FFC107','#FFB300','#FFA000','#FF8F00','#FF6F00',
+                '#FF1744','#F50057','#D500F9','#651FFF','#3D5AFE','#2979FF',
+                '#00B0FF','#00E5FF','#1DE9B6','#00E676','#76FF03','#C6FF00',
+                '#FFEA00','#FFD740','#FFAB40','#FF6E40','#FF3D00','#DD2C00',
+                '#8D6E63','#A1887F','#BCAAA4','#D7CCC8','#EFEBE9','#F5F5F5',
+                '#4E342E','#3E2723','#212121','#1B5E20','#0D47A1','#311B92',
+                '#E91E63','#9C27B0','#673AB7','#2196F3','#009688','#4CAF50',
+                '#CDDC39','#FF9800','#FF5722','#795548','#607D8B','#9E9E9E',
+                '#F44336','#E53935','#C62828','#B71C1C','#880E4F','#4A148C',
+                '#1565C0','#0277BD','#00695C','#2E7D32','#558B2F','#827717',
+                '#F9A825','#EF6C00','#E65100','#BF360C','#3E2723','#263238',
             ],
             DEFAULT_COLOR: '#FF4500',
             CHAT_MAX_MESSAGES: 200,
@@ -659,31 +556,17 @@
             cooldownEnd: 0,
             zoom: 4,
             chatMessages: [],
-            deviceId: null,
         };
 
-        function getDeviceId() {
-            let id = localStorage.getItem('pb_device_id');
-            if (!id) {
-                id = 'dev_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now().toString(36);
-                localStorage.setItem('pb_device_id', id);
-            }
-            return id;
-        }
-
         function loadState() {
-            state.deviceId = getDeviceId();
             const saved = localStorage.getItem('pb_full_state');
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
                     if (parsed.users) state.users = parsed.users;
-                    if (parsed.canvas && Array.isArray(parsed.canvas) && parsed.canvas.length === CONFIG
-                        .CANVAS_SIZE) {
-                        state.canvas = parsed.canvas;
-                    }
+                    if (parsed.canvas && Array.isArray(parsed.canvas) && parsed.canvas.length === CONFIG.CANVAS_SIZE) state.canvas = parsed.canvas;
                     if (parsed.chat) state.chatMessages = parsed.chat.slice(-CONFIG.CHAT_MAX_MESSAGES);
-                } catch (e) { console.error('Ошибка загрузки:', e); }
+                } catch (e) {}
             }
             if (!state.canvas.length) {
                 state.canvas = Array.from({ length: CONFIG.CANVAS_SIZE }, () =>
@@ -723,13 +606,12 @@
                 client_id: GOOGLE_CLIENT_ID,
                 callback: handleCredentialResponse,
                 auto_select: false,
-                cancel_on_tap_outside: true,
             });
             google.accounts.id.prompt();
         }
 
         function handleCredentialResponse(response) {
-            const credential = parseJwt(response.credential);
+            const credential = JSON.parse(atob(response.credential.split('.')[1]));
             const userData = {
                 id: 'g_' + credential.sub,
                 name: credential.name,
@@ -738,12 +620,6 @@
                 pixelsPlaced: state.users['g_' + credential.sub]?.pixelsPlaced || 0,
             };
             finishLogin(userData);
-        }
-
-        function parseJwt(token) {
-            const base64Url = token.split('.')[1];
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            return JSON.parse(atob(base64));
         }
 
         function finishLogin(userData) {
@@ -768,14 +644,15 @@
             state.cooldownEnd = 0;
             saveState();
             updateAllUI();
-            showToast('Вы вышли из аккаунта');
+            showToast('Вы вышли');
         }
 
         function showLoginModal() {
             document.getElementById('modalOverlay').style.display = 'flex';
             document.getElementById('googleButton').innerHTML = '';
             google.accounts.id.renderButton(
-                document.getElementById('googleButton'), { theme: 'outline', size: 'large', width: 280 }
+                document.getElementById('googleButton'),
+                { theme: 'outline', size: 'large', width: 280 }
             );
         }
 
@@ -799,9 +676,9 @@
                     pixel.style.width = ps + 'px';
                     pixel.style.height = ps + 'px';
                     pixel.style.background = state.canvas[row][col] || '#FFFFFF';
-                    pixel.addEventListener('click', (e) => handlePixelClick(row, col, e));
+                    pixel.addEventListener('click', () => handlePixelClick(row, col));
                     pixel.addEventListener('mouseenter', (e) => updateCoordTooltip(row, col, e));
-                    pixel.addEventListener('mouseleave', () => hideCoordTooltip());
+                    pixel.addEventListener('mouseleave', hideCoordTooltip);
                     fragment.appendChild(pixel);
                 }
             }
@@ -814,7 +691,7 @@
             if (pixel) pixel.style.background = color;
         }
 
-        function handlePixelClick(row, col, event) {
+        function handlePixelClick(row, col) {
             if (!state.user) {
                 showLoginModal();
                 return;
@@ -825,7 +702,6 @@
                 showToast(`⏳ Подождите ${remaining} сек.`);
                 return;
             }
-            if (row < 0 || row >= CONFIG.CANVAS_SIZE || col < 0 || col >= CONFIG.CANVAS_SIZE) return;
             state.canvas[row][col] = state.selectedColor;
             state.user.pixelsPlaced = (state.user.pixelsPlaced || 0) + 1;
             if (state.users[state.user.id]) {
@@ -845,20 +721,21 @@
             document.getElementById('zoomLabel').textContent = Math.round(state.zoom * 100) + '%';
         }
 
-        function zoomIn() { if (state.zoom < CONFIG.MAX_ZOOM) { state.zoom += CONFIG.ZOOM_STEP;
+        function zoomIn() {
+            if (state.zoom < CONFIG.MAX_ZOOM) { state.zoom += CONFIG.ZOOM_STEP;
                 applyZoom();
-                saveState(); } }
-
-        function zoomOut() { if (state.zoom > CONFIG.MIN_ZOOM) { state.zoom -= CONFIG.ZOOM_STEP;
+                saveState(); }
+        }
+        function zoomOut() {
+            if (state.zoom > CONFIG.MIN_ZOOM) { state.zoom -= CONFIG.ZOOM_STEP;
                 applyZoom();
-                saveState(); } }
-
+                saveState(); }
+        }
         function zoomReset() {
             state.zoom = 4;
             applyZoom();
             saveState();
             const viewport = document.getElementById('canvasViewport');
-            const canvas = document.getElementById('pixel-canvas');
             const vw = viewport.clientWidth;
             const vh = viewport.clientHeight;
             const cw = CONFIG.CANVAS_SIZE * CONFIG.BASE_PIXEL_SIZE * state.zoom;
@@ -870,20 +747,21 @@
         document.addEventListener('DOMContentLoaded', () => {
             const viewport = document.getElementById('canvasViewport');
             viewport.addEventListener('wheel', (e) => {
-                if (e.ctrlKey || e.metaKey) { e.preventDefault(); if (e.deltaY < 0) zoomIn();
-                    else zoomOut(); }
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    if (e.deltaY < 0) zoomIn();
+                    else zoomOut();
+                }
             }, { passive: false });
             let lastPinchDist = 0;
             viewport.addEventListener('touchstart', (e) => {
                 if (e.touches.length === 2) {
-                    lastPinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0]
-                        .clientY - e.touches[1].clientY);
+                    lastPinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
                 }
             });
             viewport.addEventListener('touchmove', (e) => {
                 if (e.touches.length === 2) {
-                    const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY -
-                        e.touches[1].clientY);
+                    const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
                     if (dist > lastPinchDist + 15) zoomIn();
                     else if (dist < lastPinchDist - 15) zoomOut();
                     lastPinchDist = dist;
@@ -898,8 +776,9 @@
             tooltip.style.left = (event.clientX + 16) + 'px';
             tooltip.style.top = (event.clientY - 30) + 'px';
         }
-
-        function hideCoordTooltip() { document.getElementById('coordTooltip').style.display = 'none'; }
+        function hideCoordTooltip() {
+            document.getElementById('coordTooltip').style.display = 'none';
+        }
 
         function renderColorBar() {
             const container = document.getElementById('colorSwatches');
@@ -909,8 +788,7 @@
                 swatch.className = 'color-swatch';
                 if (color === state.selectedColor) swatch.classList.add('active');
                 swatch.style.background = color;
-                if (['#FFFFFF', '#FFEA00', '#76FF03', '#00E5FF'].includes(color)) swatch.style.border =
-                    '2px solid #444';
+                if (['#FFFFFF','#FFEA00','#76FF03','#00E5FF'].includes(color)) swatch.style.border = '2px solid #444';
                 swatch.addEventListener('click', () => {
                     state.selectedColor = color;
                     saveState();
@@ -926,13 +804,19 @@
 
         function updateCooldownIndicator() {
             const el = document.getElementById('cooldownIndicator');
-            if (!state.user) { el.textContent = 'ВОЙДИТЕ';
-                el.className = 'cooldown-indicator waiting'; return; }
+            if (!state.user) {
+                el.textContent = 'ВОЙДИТЕ';
+                el.className = 'cooldown-indicator waiting';
+                return;
+            }
             const remaining = Math.max(0, state.cooldownEnd - Date.now());
-            if (remaining <= 0) { el.textContent = 'ГОТОВ';
-                el.className = 'cooldown-indicator ready'; } else { const secs = Math.ceil(remaining / 1000);
-                el.textContent = secs + 'с';
-                el.className = 'cooldown-indicator waiting'; }
+            if (remaining <= 0) {
+                el.textContent = 'ГОТОВ';
+                el.className = 'cooldown-indicator ready';
+            } else {
+                el.textContent = Math.ceil(remaining / 1000) + 'с';
+                el.className = 'cooldown-indicator waiting';
+            }
         }
         setInterval(updateCooldownIndicator, 500);
 
@@ -941,17 +825,22 @@
             panel.classList.toggle('collapsed');
             const btn = document.querySelector('.btn-chat-toggle');
             if (btn) btn.classList.toggle('active', !panel.classList.contains('collapsed'));
-            if (!panel.classList.contains('collapsed')) { document.getElementById('chatInput').focus();
-                scrollChatToBottom(); }
+            if (!panel.classList.contains('collapsed')) {
+                document.getElementById('chatInput').focus();
+                scrollChatToBottom();
+            }
         }
 
         function sendChat() {
-            if (!state.user) { showLoginModal(); return; }
+            if (!state.user) {
+                showLoginModal();
+                return;
+            }
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if (!text) return;
             const msg = {
-                id: Date.now().toString(36) + Math.random().toString(36).substr(2, 4),
+                id: Date.now().toString(36) + Math.random().toString(36).substr(2,4),
                 userId: state.user.id,
                 name: state.user.name,
                 picture: state.user.picture,
@@ -959,8 +848,9 @@
                 time: Date.now(),
             };
             state.chatMessages.push(msg);
-            if (state.chatMessages.length > CONFIG.CHAT_MAX_MESSAGES) state.chatMessages = state.chatMessages
-                .slice(-CONFIG.CHAT_MAX_MESSAGES);
+            if (state.chatMessages.length > CONFIG.CHAT_MAX_MESSAGES) {
+                state.chatMessages = state.chatMessages.slice(-CONFIG.CHAT_MAX_MESSAGES);
+            }
             saveState();
             renderChatMessages();
             input.value = '';
@@ -969,48 +859,59 @@
 
         function renderChatMessages() {
             const container = document.getElementById('chatMessages');
-            if (state.chatMessages.length === 0) { container.innerHTML =
-                    '<div style="color:#555;text-align:center;margin-top:20px;">Сообщений пока нет...</div>'; return; }
+            if (state.chatMessages.length === 0) {
+                container.innerHTML = '<div style="color:#555;text-align:center;margin-top:20px;">Сообщений пока нет...</div>';
+                return;
+            }
             container.innerHTML = state.chatMessages.map(msg => {
                 const time = new Date(msg.time);
-                const timeStr = time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes()
-                    .toString().padStart(2, '0');
-                const avatar = msg.picture ? `<img src="${msg.picture}" alt="">` :
-                    `<div style="width:24px;height:24px;border-radius:50%;background:#ff4500;display:flex;align-items:center;justify-content:center;font-size:0.7em;color:#fff;flex-shrink:0;">${(msg.name||'?').charAt(0).toUpperCase()}</div>`;
-                return `<div class="chat-msg">${avatar}<div class="chat-msg-body"><div class="chat-msg-name">${escapeHTML(msg.name)}</div><div class="chat-msg-text">${escapeHTML(msg.text)}</div><div class="chat-msg-time">${timeStr}</div></div></div>`;
+                const timeStr = time.getHours().toString().padStart(2,'0') + ':' + time.getMinutes().toString().padStart(2,'0');
+                const avatar = msg.picture
+                    ? `<img src="${msg.picture}" alt="">`
+                    : `<div style="width:24px;height:24px;border-radius:50%;background:#ff4500;display:flex;align-items:center;justify-content:center;font-size:0.7em;color:#fff;flex-shrink:0;">${(msg.name||'?').charAt(0).toUpperCase()}</div>`;
+                return `<div class="chat-msg">${avatar}<div class="chat-msg-body"><div class="chat-msg-name">${esc(msg.name)}</div><div class="chat-msg-text">${esc(msg.text)}</div><div class="chat-msg-time">${timeStr}</div></div></div>`;
             }).join('');
         }
 
-        function scrollChatToBottom() { const container = document.getElementById('chatMessages');
-            setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50); }
+        function scrollChatToBottom() {
+            const container = document.getElementById('chatMessages');
+            setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
+        }
 
         function updateTopActions() {
             const el = document.getElementById('topActions');
             if (state.user) {
-                const avatar = state.user.picture ? `<img src="${state.user.picture}" alt="">` :
-                    `<div style="width:26px;height:26px;border-radius:50%;background:#ff4500;display:flex;align-items:center;justify-content:center;font-size:0.7em;color:#fff;">${state.user.name.charAt(0).toUpperCase()}</div>`;
-                el.innerHTML =
-                    `<div class="user-chip">${avatar}<span>${escapeHTML(state.user.name.split(' ')[0])}</span><span style="color:#888;font-size:0.75em;">(${state.user.pixelsPlaced||0})</span></div><button class="btn btn-chat-toggle" id="chatToggleBtn" onclick="toggleChat()" title="Чат">💬</button><button class="btn" style="background:#2a2a3a;color:#fff;font-size:0.7em;" onclick="logout()">Выйти</button>`;
+                const avatar = state.user.picture
+                    ? `<img src="${state.user.picture}" alt="">`
+                    : `<div style="width:26px;height:26px;border-radius:50%;background:#ff4500;display:flex;align-items:center;justify-content:center;font-size:0.7em;color:#fff;">${state.user.name.charAt(0).toUpperCase()}</div>`;
+                el.innerHTML = `<div class="user-chip">${avatar}<span>${esc(state.user.name.split(' ')[0])}</span><span style="color:#888;font-size:0.75em;">(${state.user.pixelsPlaced||0})</span></div><button class="btn btn-chat-toggle" id="chatToggleBtn" onclick="toggleChat()" title="Чат">💬</button><button class="btn" style="background:#2a2a3a;color:#fff;font-size:0.7em;" onclick="logout()">Выйти</button>`;
             } else {
-                el.innerHTML =
-                    '<button class="btn btn-login" onclick="showLoginModal()"><span style="font-size:1.1em;">G</span> Войти через Google</button><button class="btn btn-chat-toggle" onclick="toggleChat()" title="Чат">💬</button>';
+                el.innerHTML = '<button class="btn btn-login" onclick="showLoginModal()"><span style="font-size:1.1em;">G</span> Войти через Google</button><button class="btn btn-chat-toggle" onclick="toggleChat()" title="Чат">💬</button>';
             }
         }
 
-        function updateAllUI() { updateTopActions();
+        function updateAllUI() {
+            updateTopActions();
             updateCooldownIndicator();
             renderColorBar();
-            renderChatMessages(); }
+            renderChatMessages();
+        }
 
-        function escapeHTML(str) { const div = document.createElement('div');
-            div.textContent = str || ''; return div.innerHTML; }
+        function esc(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
 
-        function showToast(message) { const old = document.querySelector('.toast'); if (old) old.remove(); const toast =
-                document.createElement('div');
+        function showToast(message) {
+            const old = document.querySelector('.toast');
+            if (old) old.remove();
+            const toast = document.createElement('div');
             toast.className = 'toast';
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2700); }
+            setTimeout(() => toast.remove(), 2700);
+        }
 
         window.toggleChat = toggleChat;
         window.sendChat = sendChat;
@@ -1021,7 +922,9 @@
         window.closeModal = closeModal;
         window.logout = logout;
 
-        document.addEventListener('click', (e) => { if (e.target.id === 'modalOverlay') closeModal(); });
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'modalOverlay') closeModal();
+        });
 
         function init() {
             loadState();
@@ -1030,12 +933,7 @@
             updateAllUI();
             renderChatMessages();
             setTimeout(zoomReset, 300);
-            if (!state.user) {
-                initGoogle();
-            }
-            console.log('🎨 Pixel Battle v2.0 готов!');
-            console.log('🔑 Google Client ID:', GOOGLE_CLIENT_ID);
-            console.log('👤 Пользователь:', state.user ? state.user.name : 'не вошёл');
+            initGoogle();
         }
         init();
     </script>
